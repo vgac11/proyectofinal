@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es"></html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Generator</title>
+    <link rel="stylesheet" type="text/css" href="cv_estilos.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="funciones.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <header>
+      <h1>Generador de CV</h1>
+    </header>
+    <i class="glyphicon glyphicon-user"></i>
+    <i class="bi bi-calendar-check"></i>
+    <main>
+      <table>
+     
+        <div>
+          <tr>
+            <th><label for="name">Nombre:</label></th>
+            <th><input type="text" id="name" name="name" required></th>
+            <th><p><i class="glyphicon glyphicon-user"></i></p></th>
+
+          </tr>
+        </div>
+
+        <div>
+          <tr>
+            <th><label for="fecha_de_nacimiento">Fecha de Nacimiento:</label></th>
+            <th><input type="date" id="fecha_de_nacimiento" name="fecha_de_nacimiento"  min="1930-01-01" max="2023-01-01"></th>
+            <th><i class="bi bi-calendar-check"></i></th>
+          </tr>
+        </div>
+
+        <div>
+          <tr>
+            <th><label for="email">Email:</label></th>
+            <th><input type="email" id="email" name="email" required></th>
+            <th><i class="glyphicon glyphicon-envolpe"></i></th>
+          </tr>
+        </div>
+        
+        <div>
+          <tr>
+            <th><label for="phone">Celular:</label></th>
+            <th><input type="number" id="phone" name="phone" required></th>
+          </tr>
+        </div>
+
+        <div>
+          <tr>
+            <th><label for="education">Estudios:</label></th>
+            <th><input type="texta" id="education" name="education" required></th>
+          </tr>
+        </div>
+
+        <div>
+          <tr>
+            <th><label for="work_experience">Experiencia laboral:</label></th>
+            <th><input type="text" id="work_experience" name="work_experience" required ></th>
+            <th><i class="bi bi-activity"></i></th>
+          </tr>
+        </div>
+
+        <div>
+          <tr>
+            <th><label for="skills">Habilidades:</label></th>
+            <th><input type="text" id="skills" name="skills" required></th>
+          </tr>
+        </div>
+
+        <button id="generate-pdf-btn">Generar Pdf</button>
+      </form>
+      <th><form>
+
+        <form action="index.php" method="POST" enctype="multipart/form-data">
+        <i class="bi bi-camera-fill"></i>
+          
+          foto de perfil: <input name="archivo" id="archivo" type="file"/>
+        
+        
+      </form></th>
+      </table>
+    </main>
+    <footer>
+      <p>&copy; 2023 CV Generator</p>
+    </footer>
+    <script>
+      document.getElementById("generate-pdf-btn").addEventListener("click", function(e) {
+        e.preventDefault();
+        
+        var doc = new jsPDF();
+        
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var phone = document.getElementById("phone").value;
+        var education = document.getElementById("education").value;
+        var work_experience = document.getElementById("work_experience").value;
+        var skills = document.getElementById("skills").value;
+        var date = document.getElementById("fecha_de_nacimiento").value;
+       
+        
+        
+        doc.text("Nombre: " + name, 10, 10);
+        doc.text("Fecha de nacimiento: " + date, 10, 20);
+        doc.text("Email: " + email, 10, 30);
+        doc.text("Celular: " + phone, 10, 40);
+        doc.text("Estudios: " + education, 10, 50);
+        doc.text("Experiencia laboral: " + work_experience, 10, 60);
+        doc.text("Habilidades: " + skills, 10, 70);
+        
+        doc.save("cv.pdf");
+      });
+    </script>
+  </body>
+</html>

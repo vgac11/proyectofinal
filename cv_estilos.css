@@ -1,0 +1,23 @@
+
+h3 {color: 60px red;}
+
+table, th{
+  border: 3px solid black;
+  text-align: left;
+}
+
+th, td {
+    padding: 15px;
+  }
+  th, td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 40px;
+  }
+
+
+table {
+    border-spacing: 30px;
+  }
+
